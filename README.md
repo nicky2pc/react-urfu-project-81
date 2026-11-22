@@ -1,6 +1,7 @@
 # Генератор форм на Typescript
 
 [![hexlet-check](https://github.com/nicky2pc/react-urfu-project-81/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/nicky2pc/react-urfu-project-81/actions)
+[![check](https://github.com/nicky2pc/react-urfu-project-81/actions/workflows/check.yml/badge.svg)](https://github.com/nicky2pc/react-urfu-project-81/actions/workflows/check.yml)
 
 Библиотека, с помощью которой удобно создавать формы в шаблонах сайтов. Она заметно сокращает код описания формы за счет автоматической обработки ошибок и различных контролов.
 
@@ -18,6 +19,15 @@ git clone https://github.com/nicky2pc/react-urfu-project-81.git
 cd react-urfu-project-81
 make install
 make build
+```
+
+## Проверки
+
+```bash
+make lint           # oxlint и oxfmt
+make typecheck      # tsc без сборки
+make test           # vitest
+make test-coverage  # тесты с порогом покрытия
 ```
 
 ## Использование

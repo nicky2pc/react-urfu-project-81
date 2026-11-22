@@ -15,7 +15,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint && oxfmt --check",
+    "format": "oxfmt",
+    "test": "vitest run",
+    "test-coverage": "vitest run --coverage"
   },
   "repository": {
     "type": "git",
@@ -27,6 +32,10 @@
   "homepage": "https://github.com/nicky2pc/react-urfu-project-81#readme",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^7.0.2"
+    "@vitest/coverage-v8": "^5.1.0",
+    "oxfmt": "^0.77.0",
+    "oxlint": "^1.92.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
   }
 }
