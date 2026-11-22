@@ -1,12 +1,12 @@
 import { readFileSync } from "node:fs";
-import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { expect, test } from "vitest";
 
 import HexletCode, { type FormBuilder, type FormOptions, type Template } from "../src/index.js";
 
 const getFixturePath = (name: string): string =>
-  path.join(import.meta.dirname, "..", "__fixtures__", name);
+  fileURLToPath(new URL(`../__fixtures__/${name}`, import.meta.url));
 
 const readFixture = (name: string): string => readFileSync(getFixturePath(name), "utf-8").trim();
 
@@ -101,6 +101,16 @@ const cases: Case[] = [
       f.submit("Wow");
     },
     fixture: "custom-submit.html",
+  },
+  {
+    name: "custom label text and attributes",
+    template,
+    options: {},
+    build: (f) => {
+      f.input("name", { label: "Your name", labelHtml: { class: "label" } });
+      f.input("job", { as: "textarea", label: "Position" });
+    },
+    fixture: "custom-label.html",
   },
 ];
 
