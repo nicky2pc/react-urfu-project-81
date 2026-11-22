@@ -1,2 +1,3 @@
 export { default } from "./HexletCode.js";
-export type { FormOptions, Template } from "./types.js";
+export type { default as FormBuilder } from "./FormBuilder.js";
+export type { FormOptions, InputOptions, Template } from "./types.js";

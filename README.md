@@ -32,7 +32,23 @@ make test-coverage  # тесты с порогом покрытия
 
 ## Использование
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```ts
+import HexletCode from "@hexlet/code";
+
+const template = { name: "rob", job: "hexlet", gender: "m" };
+
+const form = HexletCode.formFor(template, { url: "/users" }, (f) => {
+  f.input("name", { class: "user-input" });
+  f.input("job", { as: "textarea", rows: 50 });
+});
+
+console.log(form);
+// <form action="/users" method="post"><input name="name" type="text" value="rob" class="user-input"><textarea cols="20" rows="50" name="job">hexlet</textarea></form>
+```
+
+- `url` становится атрибутом `action`, по умолчанию `#`. Метод по умолчанию `post`.
+- `input` создаёт текстовое поле. С опцией `as: "textarea"` получается `textarea` с размером `cols="20"` и `rows="40"`, если не задан другой. Остальные опции становятся атрибутами поля.
+- Если поля нет в шаблоне, `formFor` бросает ошибку `Field 'age' does not exist in the template.`
 
 ---
 
