@@ -7,18 +7,28 @@ export type FormOptions = Attributes & {
   method?: string;
 };
 
-export type FieldType = "text" | "textarea";
-
 export type InputOptions = Attributes & {
-  as?: FieldType;
+  as?: "text" | "textarea";
 };
 
-export type Field = {
-  type: FieldType;
+type InputData = {
   name: string;
+  label: string;
   value: string | number;
   attributes: Attributes;
 };
+
+type FieldData = {
+  text: InputData;
+  textarea: InputData;
+  submit: { value: string };
+};
+
+export type FieldType = keyof FieldData;
+
+export type Field<T extends FieldType = FieldType> = {
+  [K in T]: { type: K } & FieldData[K];
+}[T];
 
 export type Form = {
   attributes: Attributes;

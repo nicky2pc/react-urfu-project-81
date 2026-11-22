@@ -40,14 +40,16 @@ const template = { name: "rob", job: "hexlet", gender: "m" };
 const form = HexletCode.formFor(template, { url: "/users" }, (f) => {
   f.input("name", { class: "user-input" });
   f.input("job", { as: "textarea", rows: 50 });
+  f.submit();
 });
 
 console.log(form);
-// <form action="/users" method="post"><input name="name" type="text" value="rob" class="user-input"><textarea cols="20" rows="50" name="job">hexlet</textarea></form>
+// <form action="/users" method="post"><label for="name">Name</label><input name="name" type="text" value="rob" class="user-input"><label for="job">Job</label><textarea cols="20" rows="50" name="job">hexlet</textarea><input type="submit" value="Save"></form>
 ```
 
 - `url` становится атрибутом `action`, по умолчанию `#`. Метод по умолчанию `post`.
-- `input` создаёт текстовое поле. С опцией `as: "textarea"` получается `textarea` с размером `cols="20"` и `rows="40"`, если не задан другой. Остальные опции становятся атрибутами поля.
+- `input` создаёт текстовое поле с подписью `label`. С опцией `as: "textarea"` получается `textarea` с размером `cols="20"` и `rows="40"`, если не задан другой. Остальные опции становятся атрибутами поля.
+- `submit` добавляет кнопку отправки с текстом `Save`, другой текст передаётся первым аргументом: `f.submit("Wow")`.
 - Если поля нет в шаблоне, `formFor` бросает ошибку `Field 'age' does not exist in the template.`
 
 ---

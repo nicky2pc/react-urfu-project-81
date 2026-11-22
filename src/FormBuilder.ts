@@ -1,5 +1,7 @@
 import type { Field, InputOptions, Template } from "./types.js";
 
+const capitalize = (text: string): string => `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
+
 export default class FormBuilder {
   private readonly items: Field[] = [];
 
@@ -16,6 +18,10 @@ export default class FormBuilder {
     }
 
     const { as: type = "text", ...attributes } = options;
-    this.items.push({ type, name, value, attributes });
+    this.items.push({ type, name, label: capitalize(name), value, attributes });
+  }
+
+  submit(value = "Save"): void {
+    this.items.push({ type: "submit", value });
   }
 }

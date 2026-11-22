@@ -1,12 +1,10 @@
 import Tag from "../Tag.js";
-import type { Field } from "../types.js";
+import LabeledField from "./LabeledField.js";
 
-export default class TextInput {
-  constructor(private readonly field: Field) {}
-
-  render(): string {
+export default class TextInput extends LabeledField<"text"> {
+  protected renderControl(): Tag {
     const { name, value, attributes } = this.field;
 
-    return new Tag("input", { name, type: "text", value, ...attributes }).toString();
+    return new Tag("input", { name, type: "text", value, ...attributes });
   }
 }
