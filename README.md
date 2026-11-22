@@ -9,15 +9,15 @@
 
 ## Стек
 
-- JavaScript
+- TypeScript
 
 ## Установка
-
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
 
 ```bash
 git clone https://github.com/nicky2pc/react-urfu-project-81.git
 cd react-urfu-project-81
+make install
+make build
 ```
 
 ## Использование
