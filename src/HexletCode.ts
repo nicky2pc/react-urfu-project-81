@@ -8,10 +8,13 @@ export default class HexletCode {
     options: FormOptions,
     build: (form: FormBuilder) => void,
   ): string {
-    const { url = "#", method = "post", ...attributes } = options;
+    const { url = "#", ...attributes } = options;
     const form = new FormBuilder(template);
     build(form);
 
-    return renderForm({ attributes: { action: url, method, ...attributes }, fields: form.fields });
+    return renderForm({
+      attributes: { ...attributes, action: url, method: attributes.method ?? "post" },
+      fields: form.fields,
+    });
   }
 }

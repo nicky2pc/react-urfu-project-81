@@ -1,20 +1,26 @@
-export type Attributes = Record<string, string | number>;
+export type AttributeValue = string | number;
 
-export type Template = Record<string, string | number>;
+export type Attributes = Record<string, AttributeValue>;
+
+export type Template = Record<string, AttributeValue>;
 
 export type FormOptions = Attributes & {
   url?: string;
   method?: string;
 };
 
-export type InputOptions = Attributes & {
+export type InputOptions = {
   as?: "text" | "textarea";
+  label?: string;
+  labelHtml?: Attributes;
+  [attribute: string]: AttributeValue | Attributes;
 };
 
 type InputData = {
   name: string;
   label: string;
-  value: string | number;
+  labelAttributes: Attributes;
+  value: AttributeValue;
   attributes: Attributes;
 };
 

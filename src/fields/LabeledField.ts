@@ -6,8 +6,8 @@ export default abstract class LabeledField<T extends "text" | "textarea"> {
   constructor(protected readonly field: Field<T>) {}
 
   render(): string {
-    const { name, label } = this.field;
-    const labelTag = new Tag("label", { for: name }, escapeHtml(label));
+    const { name, label, labelAttributes } = this.field;
+    const labelTag = new Tag("label", { for: name, ...labelAttributes }, escapeHtml(label));
 
     return `${labelTag}${this.renderControl()}`;
   }

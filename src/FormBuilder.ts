@@ -1,6 +1,13 @@
-import type { Field, InputOptions, Template } from "./types.js";
+import type { AttributeValue, Attributes, Field, InputOptions, Template } from "./types.js";
 
 const capitalize = (text: string): string => `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
+
+const toAttributes = (options: Record<string, AttributeValue | Attributes>): Attributes =>
+  Object.fromEntries(
+    Object.entries(options).filter(
+      (entry): entry is [string, AttributeValue] => typeof entry[1] !== "object",
+    ),
+  );
 
 export default class FormBuilder {
   private readonly items: Field[] = [];
@@ -17,8 +24,15 @@ export default class FormBuilder {
       throw new Error(`Field '${name}' does not exist in the template.`);
     }
 
-    const { as: type = "text", ...attributes } = options;
-    this.items.push({ type, name, label: capitalize(name), value, attributes });
+    const { as: type = "text", label = capitalize(name), labelHtml = {}, ...rest } = options;
+    this.items.push({
+      type,
+      name,
+      label,
+      labelAttributes: labelHtml,
+      value,
+      attributes: toAttributes(rest),
+    });
   }
 
   submit(value = "Save"): void {
