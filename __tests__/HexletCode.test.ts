@@ -81,6 +81,27 @@ const cases: Case[] = [
     },
     fixture: "escaped-values.html",
   },
+  {
+    name: "submit with default text",
+    template,
+    options: { method: "post" },
+    build: (f) => {
+      f.input("name");
+      f.input("job", { as: "textarea" });
+      f.submit();
+    },
+    fixture: "form-with-submit.html",
+  },
+  {
+    name: "submit with custom text",
+    template,
+    options: { url: "/users" },
+    build: (f) => {
+      f.input("name");
+      f.submit("Wow");
+    },
+    fixture: "custom-submit.html",
+  },
 ];
 
 test.each(cases)("$name", ({ template: data, options, build, fixture }) => {
